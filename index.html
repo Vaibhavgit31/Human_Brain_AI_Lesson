@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>The Human Brain</title>
+    <style>
+      html, body { margin: 0; height: 100%; background: #060b14; overflow: hidden; }
+      #stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+      #unity-canvas { display: block; background: #060b14; outline: none; }
+      #loading { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+                 color: #f1f6fb; font: 600 15px/1.4 system-ui, "Segoe UI", sans-serif; letter-spacing: .14em; text-align: center; }
+      #loading small { color: #9fb2c5; font-weight: 400; letter-spacing: .04em; }
+      #bar { width: min(420px, 60vw); height: 6px; border-radius: 3px; background: #16243a; overflow: hidden; }
+      #fill { width: 0; height: 100%; background: #6ad4ee; transition: width .2s; }
+      #note { position: fixed; left: 0; right: 0; top: 0; font: 14px/1.5 system-ui, "Segoe UI", sans-serif; z-index: 2; }
+      #note div { padding: 10px 16px; }
+    </style>
+  </head>
+  <body>
+    <div id="stage"><canvas id="unity-canvas" width="1280" height="720" tabindex="-1" style="width:1280px;height:720px"></canvas></div>
+    <div id="loading">
+      <div>THE HUMAN BRAIN</div>
+      <div id="bar"><div id="fill"></div></div>
+      <small id="percent">Loading the lesson</small>
+    </div>
+    <div id="note"></div>
+    <!-- The lesson's server and the classroom session: names the server (window.HB_SERVER_URL), signs the requests to
+         it, and shows the one small connection form. It must load before the loader, whose code takes fetch from the
+         page as it finds it. -->
+    <script src="hb-backend.js"></script>
+    <script>
+      // The lesson's own server, for Dr. Kaya's live answers and voice. hb-backend.js has named it already; this
+      // line only stands in when that file is missing (a page with no server: he then answers from his notes).
+      window.HB_SERVER_URL = window.HB_SERVER_URL || "";
+      var canvas = document.querySelector("#unity-canvas");
+      var instance = null;
+
+      // The lesson is laid out for a 16:9 picture: the canvas is the largest one of that shape the window holds, and
+      // it is drawn at no more than 1080 lines (a denser screen would cost four times the work for no gain here).
+      function fit() {
+        var w = window.innerWidth, h = window.innerHeight;
+        // A window with no size (a tab that is not shown yet): leave the canvas as it is. A canvas of width 0 makes
+        // the player throw at every frame it draws.
+        if (w < 16 || h < 16) return;
+        var cw = Math.min(w, Math.floor(h * 16 / 9)), ch = Math.floor(cw * 9 / 16);
+        canvas.style.width = cw + "px";
+        canvas.style.height = ch + "px";
+        var ratio = Math.min(window.devicePixelRatio || 1, 1080 / Math.max(1, ch));
+        config.devicePixelRatio = ratio;
+        if (instance && instance.Module) instance.Module.devicePixelRatio = ratio;
+      }
+
+      function showBanner(msg, type) {
+        var box = document.querySelector("#note");
+        var div = document.createElement("div");
+        div.innerHTML = msg;
+        div.style.background = type == "error" ? "#b3261e" : "#ffc747";
+        div.style.color = type == "error" ? "#ffffff" : "#241702";
+        box.appendChild(div);
+        if (type != "error") setTimeout(function () { box.removeChild(div); }, 6000);
+      }
+
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/3985937a9718e36dc527175590488696.loader.js";
+      var config = {
+        arguments: [],
+        dataUrl: buildUrl + "/826b5c693a89655009d1cb8108e1fc50.data.unityweb",
+        frameworkUrl: buildUrl + "/dd4223255e15555f756faadfc59d8e02.framework.js.unityweb",
+        codeUrl: buildUrl + "/c9aaab45452eb43a7bc00bd5acebde5f.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        // What the lesson keeps on the device (the saved answers a server gave it) is written to the browser's store at once.
+        autoSyncPersistentDataPath: true,
+        companyName: "DefaultCompany",
+        productName: "The Human Brain",
+        productVersion: "0.1.0",
+        showBanner: showBanner,
+      };
+      window.addEventListener("resize", fit);
+      fit();
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = function () {
+        createUnityInstance(canvas, config, function (progress) {
+          document.querySelector("#fill").style.width = Math.round(100 * progress) + "%";
+          // Up to 0.9 is the download; the rest is the lesson starting. The first visit downloads the whole lesson;
+          // the browser keeps it, so a later visit starts much sooner.
+          document.querySelector("#percent").textContent = progress < 0.9
+            ? "Loading the lesson: " + Math.round(100 * progress / 0.9) + "% (the first visit takes longest)"
+            : "Almost there";
+        }).then(function (unityInstance) {
+          instance = unityInstance;
+          fit();
+          document.querySelector("#loading").style.display = "none";
+        }).catch(function (message) {
+          showBanner("The lesson could not start: " + message, "error");
+        });
+      };
+      script.onerror = function () { showBanner("The lesson's files could not be loaded.", "error"); };
+      document.body.appendChild(script);
+    </script>
+  </body>
+</html>
