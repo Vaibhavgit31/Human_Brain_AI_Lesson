@@ -1,8 +1,8 @@
 /*
  * Dr. Kaya WebGL backend connection helper.
  * Load this script BEFORE the Unity loader and the existing voice bridge.
- * The original frontend was not supplied. Unity C# UnityWebRequest interception
- * and audible end-to-end playback must still be verified in the actual build.
+ * Loopback pages use the local lesson server; hosted pages use the public Worker.
+ * No provider key is part of either browser connection.
  *
  * window.HBBackend.connect(code) -> Promise<boolean>
  * window.HBBackend.ready -> boolean (usable public mode or an unexpired session)
@@ -16,7 +16,8 @@
   "use strict";
   if (window.HBBackend) return;
 
-  const SERVER = "https://dr-kaya-api.vaibhav-996.workers.dev";
+  const localPage = location.protocol === "http:" && ["localhost", "127.0.0.1", "[::1]"].includes(location.hostname);
+  const SERVER = localPage ? "http://" + location.hostname + ":8787" : "https://dr-kaya-api.vaibhav-996.workers.dev";
   const API_ORIGIN = new URL(SERVER).origin;
   const STORAGE_KEY = "dr-kaya.classroom-session.v1";
   const PROTECTED = new Set(["/api/chat", "/api/coach", "/api/stt", "/api/tts", "/api/memory/sync"]);
