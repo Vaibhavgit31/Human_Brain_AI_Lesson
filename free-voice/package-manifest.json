@@ -1,0 +1,81 @@
+{
+  "kokoro": "1.2.1",
+  "ort": "1.22.0-dev.20250409-89f8206ba4",
+  "model": "onnx-community/Kokoro-82M-v1.0-ONNX",
+  "dtype": "q8",
+  "voice": "am_puck",
+  "files": {
+    "vendor/kokoro-1.2.1.web.mjs": {
+      "bytes": 2135359,
+      "sha256": "7b4d0f8dae7c0b0f02257e3247ac2369a90ce4e04e2a3d12596e13c8c1f1f946"
+    },
+    "vendor/ort-wasm-simd-threaded.jsep.mjs": {
+      "bytes": 44484,
+      "sha256": "08fb86ec433c78bfb032c5d84a68b8e8e5a8d81268fa39e24314179a5767a5b9"
+    },
+    "vendor/ort-wasm-simd-threaded.jsep.wasm": {
+      "bytes": 21596019,
+      "sha256": "c46655e8a94afc45338d4cb2b840475f88e5012d524509916e505079c00bfa39"
+    },
+    "voices/am_puck.bin": {
+      "bytes": 522240,
+      "sha256": "fcf73c989033e9233e0b98713eca600c8c74dcc1614b37009d5450ff4a2274a0"
+    },
+    "models/onnx-community/Kokoro-82M-v1.0-ONNX/config.json": {
+      "bytes": 44,
+      "sha256": "df34b4f930b23447cd4dc410fabfb42eb3f24e803e6c3f97d618fb359380a36f"
+    },
+    "models/onnx-community/Kokoro-82M-v1.0-ONNX/tokenizer.json": {
+      "bytes": 3497,
+      "sha256": "77a02c8e164413299b4b4c403b14f8e0e1c1b727db4d46a09d6327b861060a34"
+    },
+    "models/onnx-community/Kokoro-82M-v1.0-ONNX/tokenizer_config.json": {
+      "bytes": 113,
+      "sha256": "be1cb066d6ef6b074b3f15e6a6dd21ac88ff3cdaedf325f0aaed686c70f75d20"
+    },
+    "models/onnx-community/Kokoro-82M-v1.0-ONNX/onnx/model_quantized.onnx": {
+      "bytes": 92361116,
+      "sha256": "fbae9257e1e05ffc727e951ef9b9c98418e6d79f1c9b6b13bd59f5c9028a1478"
+    },
+    "kokoro-profile.mjs": {
+      "bytes": 6998,
+      "sha256": "ac5a583748b68011a01e2409735b3c51cc9e22bbfbe566168c3913c15714e504"
+    },
+    "pronunciation.json": {
+      "bytes": 901,
+      "sha256": "4298c9f1972ae9ed3ac932dec8408fc73591fce6c74710dc127ac63c8acd7585"
+    },
+    "licenses/kokoro-js-LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "licenses/onnxruntime-web-README.md": {
+      "bytes": 5284,
+      "sha256": "3089f92ffb02d63365f05d870df5c6ac9bbaed096943b5b4fe55afd9b7a624f8"
+    },
+    "licenses/transformers-LICENSE": {
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    "licenses/phonemizer-LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "licenses/espeak-ng-COPYING.txt": {
+      "bytes": 35147,
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+    },
+    "licenses/Kokoro-model-card.md": {
+      "bytes": 10627,
+      "sha256": "b8fd888b4782f4d4ae85e2f1587cafd727037f4f138f72429ef1bd5908c0e9d8"
+    },
+    "licenses/NOTICE.md": {
+      "bytes": 1365,
+      "sha256": "a338305f3f671502e9e4439e26be937ade9bcc53ce9e75ad43c226c4913fdbdc"
+    },
+    "licenses/onnxruntime-LICENSE.txt": {
+      "bytes": 1073,
+      "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c"
+    }
+  }
+}

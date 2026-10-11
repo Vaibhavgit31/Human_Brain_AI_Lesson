@@ -29,6 +29,7 @@
          it, and shows the one small connection form. It must load before the loader, whose code takes fetch from the
          page as it finds it. -->
     <script src="hb-backend.js"></script>
+    <script src="hb-free-voice.js"></script>
     <script>
       // The lesson's own server, for Dr. Kaya's live answers and voice. hb-backend.js has named it already; this
       // line only stands in when that file is missing (a page with no server: he then answers from his notes).
@@ -62,12 +63,12 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/44d847b1455af98e7f188c02fed75c27.loader.js";
+      var loaderUrl = buildUrl + "/5905d5aba9e1986a346d898788dd4af2.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/54ee833f1d313ec143c3561ecd97b7b0.data.unityweb",
-        frameworkUrl: buildUrl + "/e6185299a991ff34ba8eeafdb6195beb.framework.js.unityweb",
-        codeUrl: buildUrl + "/3d3db71a200995e659ae38a64cdebe59.wasm.unityweb",
+        dataUrl: buildUrl + "/a2429f37eb0acd42735d51de9840e070.data.unityweb",
+        frameworkUrl: buildUrl + "/1b88b0f037afea74133dd39c19bdba66.framework.js.unityweb",
+        codeUrl: buildUrl + "/8db0a74e18265d1a8d2a59cb9a27b173.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         // What the lesson keeps on the device (the saved answers a server gave it) is written to the browser's store at once.
         autoSyncPersistentDataPath: true,

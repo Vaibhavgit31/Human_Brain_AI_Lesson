@@ -1,0 +1,13 @@
+{
+  "note": "Spoken forms of hard words for Dr. Kaya. Only entries with enabled true are used, and only the text sent to the speech provider changes. Captions and the lesson script stay as written. Every entry starts disabled: enable one only after hearing the voice say the plain word wrongly in an audition.",
+  "entries": [
+    { "term": "medulla oblongata", "say": "meh-DULL-ah ob-long-GAH-ta", "enabled": false },
+    { "term": "medulla", "say": "meh-DULL-ah", "enabled": false },
+    { "term": "hypothalamus", "say": "high-po-THAL-a-mus", "enabled": false },
+    { "term": "cerebellum", "say": "seh-reh-BELL-um", "enabled": false },
+    { "term": "cerebrum", "say": "SEH-reh-brum", "enabled": false },
+    { "term": "pons", "say": "ponz", "enabled": false },
+    { "term": "dendrites", "say": "DEN-drites", "enabled": false },
+    { "term": "synapse", "say": "SIN-aps", "enabled": false }
+  ]
+}
