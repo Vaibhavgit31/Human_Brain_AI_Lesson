@@ -6,8 +6,10 @@ An interactive lesson for Class 10 learners, with Dr. Kaya as guide.
 
 - Use Chrome or Edge on a desktop or laptop. The first visit downloads the whole lesson, so give it a minute.
 - Click once on the page to switch the sound on.
-- On this page Dr. Kaya answers questions from the lesson's own notes. Live answers need the lesson's own server
-  and are not part of this page.
+- Dr. Kaya's live questions use the lesson's existing hosted assistant service; no provider key is included in this page.
+- The latest update includes nine different wall anatomy videos, animated teaching boards, calmer lighting,
+  the approved younger Fenrir greeting and quiet background music. The full matching narration set is still in progress;
+  live answers currently use the existing Groq voice service.
 
 This repository holds only the built lesson (branch `gh-pages`).
 
